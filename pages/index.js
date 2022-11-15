@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
@@ -10,7 +11,7 @@ import MyVerticallyCenteredModal from "../components/modal";
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
-  const [modalShow, setModalShow] = React.useState(false);
+
   return {
     props: {
       allPostsData,
@@ -19,6 +20,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <Layout home>
       <Head>
