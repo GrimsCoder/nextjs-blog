@@ -4,9 +4,13 @@ import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
+import Hebcal from "../components/hebcal";
+import Button from "react-bootstrap/Button";
+import MyVerticallyCenteredModal from "../components/modal";
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
+  const [modalShow, setModalShow] = React.useState(false);
   return {
     props: {
       allPostsData,
@@ -20,6 +24,15 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <Hebcal />
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Launch vertically centered modal
+      </Button>
+
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       <section className={utilStyles.headingMd}>
         <p>[Your Self Introduction]</p>
         <p>
